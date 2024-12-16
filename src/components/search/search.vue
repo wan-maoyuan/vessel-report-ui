@@ -8,7 +8,7 @@
     <div class="search-container">
       <input type="text" class="search-input" placeholder="请输入船舶名称、imo号或mmsi">
       <div class="search-icon">
-          <img src="../../../public/search-icon.svg" alt="Search" style="width: 30px; height: 30px;">
+          <img src="/search-icon.svg" alt="Search" style="width: 30px; height: 30px;">
       </div>
     </div>
 
@@ -79,6 +79,7 @@
   text-align: center;
   top: 11%;
   font-size: 18px;
+  font-weight: bold;
 }
 
 .usage-info {

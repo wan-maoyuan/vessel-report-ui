@@ -1,6 +1,20 @@
 <template>
-  <div>
-    <h1>这个是船舶信息展示页面</h1>
+  <div class="report">
+    <div>
+      船舶档案信息
+    </div>
+
+    <div>
+      船舶靠泊数据分析
+    </div>
+
+    <div>
+      船舶锚泊数据分析
+    </div>
+
+    <div>
+      船舶航行数据分析
+    </div>
   </div>
 </template>
 

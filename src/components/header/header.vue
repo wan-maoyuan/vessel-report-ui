@@ -1,7 +1,7 @@
 <template>
   <div class="header-container">
     <div class="logo">
-      <img src="../../../public/navgreen_logo.png" alt="Logo">
+      <img src="/navgreen_logo.png" alt="Logo">
     </div>
     <div class="share-btn">
       <button>分享到微信</button>
