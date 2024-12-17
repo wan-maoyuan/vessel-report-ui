@@ -18,7 +18,7 @@ export default {
   components: { Search, VesselInfo, Header, Footer },
 
   setup() {
-    let isSearch = ref(false);
+    let isSearch = ref(true);
 
     return { isSearch }
   }
@@ -31,7 +31,7 @@ export default {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 80px;
+  height: 6vh;
   background-color: #EEEDED;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
   text-align: center;
@@ -41,9 +41,9 @@ export default {
 
 .search {
   position: absolute;
-  top: 80px;
+  top: 6vh;
   left: 0%;
-  height: calc(100vh - 80px);
+  height: 94vh;
   width: 100vw;
   background-color: #EEEDED;
   background-image: radial-gradient(circle, #aaadb3 2px, transparent 2px);
@@ -52,10 +52,10 @@ export default {
 
 .vessel-info {
   position: absolute;
-  top: 80px;
+  top: 6vh;
   left: 0%;
-  height: calc(100vh - 80px);
   width: 100vw;
+  height: 94vh;
   background-color: #EEEDED;
   background-image: radial-gradient(circle, #aaadb3 2px, transparent 2px);
   background-size: 40px 40px;
