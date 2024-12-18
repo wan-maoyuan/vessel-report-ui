@@ -4,7 +4,7 @@
       <!-- <img src="/logo.png" alt="Logo"> -->
     </div>
     <div class="share-btn">
-      <button>分享到微信</button>
+      <button>发送至邮箱</button>
     </div>
   </div>
 </template>

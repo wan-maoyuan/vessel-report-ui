@@ -3,4 +3,6 @@ import App from './App.vue'
 import "/node_modules/flag-icon-css/css/flag-icons.min.css";
 
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.mount('#app')

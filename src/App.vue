@@ -1,26 +1,36 @@
 <template>
-  <Header class="header"></Header>
-  <Search class="search" v-if="isSearch"></Search>
-  <VesselInfo class="vessel-info" v-if="!isSearch"></VesselInfo>
-  <Footer class="footer">你好</Footer>
+  <div v-if="isSearch" >
+    <Header class="header"></Header>
+    <Search class="search" @event="showVesselInfo"></Search>
+  </div>
+
+  <VesselInfo class="vessel-info" v-if="!isSearch" @event="showSearch"></VesselInfo>
 </template>
 
 <script lang="ts">
 import Search from './components/search/search.vue';
 import VesselInfo from './components/vessel/vessel_info.vue';
 import Header from './components/header/header.vue';
-import Footer from './components/footer/footer.vue';
 
 import { ref } from 'vue'
 
 export default {
   name: 'App',
-  components: { Search, VesselInfo, Header, Footer },
+  components: { Search, VesselInfo, Header },
 
   setup() {
     let isSearch = ref(true);
+    // localStorage.setItem('mmsi', '352004507');
 
-    return { isSearch }
+    function showSearch() {
+      isSearch.value = true;
+    }
+
+    function showVesselInfo() {
+      isSearch.value = false;
+    }
+
+    return { isSearch, showSearch, showVesselInfo }
   }
 }
 </script>
@@ -52,10 +62,10 @@ export default {
 
 .vessel-info {
   position: absolute;
-  top: 6vh;
+  top: 0%;
   left: 0%;
   width: 100vw;
-  height: 94vh;
+  height: 500vh;
   background-color: #EEEDED;
   background-image: radial-gradient(circle, #aaadb3 2px, transparent 2px);
   background-size: 40px 40px;

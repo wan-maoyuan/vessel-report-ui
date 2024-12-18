@@ -13,11 +13,9 @@
     </div>
     <div class="search-results" v-if="searchResultShow">
       <ul>
-        <li v-for="vessel in vesselList">
+        <li v-for="vessel in vesselList" @click="chooseVessel(vessel)">
           <span v-bind:class="vessel.flag_country" style="font-size:24px"></span>
-          {{ vessel.name_cn }}
-          ({{ vessel.name_en }})
-          MMSI: {{ vessel.mmsi }}
+          {{ vessel.name_cn }}&nbsp;&nbsp;({{ vessel.name_en }})&nbsp;&nbsp;MMSI: {{ vessel.mmsi }}&nbsp;&nbsp;IMO: {{ vessel.imo }}
         </li>
       </ul>
     </div>
@@ -39,6 +37,17 @@ import { queryVesselFuzzy, VesselFuzzy } from '../../api/vesselFuzzy/vesselFuzzy
 let searchKey = ref('');
 let searchResultShow = ref(false);
 const vesselList = ref<VesselFuzzy[]>();
+const showVesselInfo = defineEmits(['event'])
+
+function chooseVessel(vessel: VesselFuzzy) {
+  if (vessel.mmsi === 0) {
+    console.log("vessel mmsi is empty");
+    return
+  }
+
+  localStorage.setItem('mmsi', String(vessel.mmsi));
+  showVesselInfo('event');
+}
 
 watch(searchKey, async (newKey) => {
   if (newKey.length >= 2) {
