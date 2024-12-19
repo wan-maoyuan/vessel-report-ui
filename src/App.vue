@@ -1,73 +1,31 @@
 <template>
-  <div v-if="isSearch" >
-    <Header class="header"></Header>
-    <Search class="search" @event="showVesselInfo"></Search>
-  </div>
-
-  <VesselInfo class="vessel-info" v-if="!isSearch" @event="showSearch"></VesselInfo>
+  <component :is="currentView" />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import Search from './components/search/search.vue';
-import VesselInfo from './components/vessel/vessel_info.vue';
-import Header from './components/header/header.vue';
+import VesselInfo from './components/vessel/vesselInfo.vue';
 
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-export default {
-  name: 'App',
-  components: { Search, VesselInfo, Header },
-
-  setup() {
-    let isSearch = ref(true);
-    // localStorage.setItem('mmsi', '352004507');
-
-    function showSearch() {
-      isSearch.value = true;
-    }
-
-    function showVesselInfo() {
-      isSearch.value = false;
-    }
-
-    return { isSearch, showSearch, showVesselInfo }
-  }
+const routes = {
+  '/': Search,
+  '/vessel_info': VesselInfo
 }
+const currentPath = ref(window.location.hash);
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  if (currentPath.value.includes('vessel_info')) {
+    return routes['/vessel_info'];
+  }
+
+  return routes['/'];
+})
 </script>
 
 <style scoped>
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 6vh;
-  background-color: #EEEDED;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
-  text-align: center;
-  line-height: 80px;
-  z-index: 1000;
-}
-
-.search {
-  position: absolute;
-  top: 6vh;
-  left: 0%;
-  height: 94vh;
-  width: 100vw;
-  background-color: #EEEDED;
-  background-image: radial-gradient(circle, #aaadb3 2px, transparent 2px);
-  background-size: 40px 40px;
-}
-
-.vessel-info {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100vw;
-  height: 500vh;
-  background-color: #EEEDED;
-  background-image: radial-gradient(circle, #aaadb3 2px, transparent 2px);
-  background-size: 40px 40px;
-}
 </style>
