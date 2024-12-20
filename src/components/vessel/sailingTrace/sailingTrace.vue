@@ -1,6 +1,6 @@
 <template>
 	<div style="width: 100%;height: 100%;">
-		<div id="sailing"></div>
+		<div style="width: 100%;height: 100%;" :id="idName"></div>
 	</div>
 </template>
 
@@ -21,10 +21,11 @@ const props = defineProps({
 
 const { pointList } = toRefs(props);
 const map = ref();
+const idName = ref('sailing' + String(Math.random()));
 
 onMounted(() => {
-	map.value = L.map('sailing').setView([0, 0], 2);
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	map.value = L.map(idName.value).setView([0, 0], 2);
+	L.tileLayer('https://t0.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=a3f1871ff0ee05cf0025344ccc9d1165', {
 		maxZoom: 4,
 		attribution: 'nav-green'
 	}).addTo(map.value);
@@ -80,8 +81,4 @@ watch(() => [pointList], () => {
 </script>
 
 <style scoped>
-#sailing {
-	height: 100%;
-	width: 100%;
-}
 </style>

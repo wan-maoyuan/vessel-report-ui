@@ -277,12 +277,12 @@
       </div>
     </div>
 
-    <div class="sailing_info_report">
+    <div class="sailing_info_report" v-for="sailing_info in tarceInfo?.sailing_info_list">
       <div class="title">vessel berthing</div>
       <div style="font-size: 20px; font-weight: bold; color: blue; margin-left: 60px; margin-top: 30px;">Sailing
         Infomation</div>
 
-      <div style="justify-content: center;" v-for="sailing_info in tarceInfo?.sailing_info_list">
+      <div style="justify-content: center;">
         <div style="width: 1400px; padding-top: 30px; margin: auto; border: 2px dashed blue; border-radius: 10px;">
           <div style="margin: 10px;">
             <div style="display: flex;">
@@ -328,7 +328,6 @@
           </div>
         </div>
 
-
         <div style="font-size: 20px; font-weight: bold; color: blue; margin-left: 60px; margin-top: 30px;">Daily Speed &
           Distance</div>
         <DailyInfo style="width: 1400px; height: 600px; margin: auto; border: 2px dashed blue; border-radius: 10px;"
@@ -341,7 +340,6 @@
         </SailingTrace>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -373,7 +371,7 @@ onMounted(async () => {
   detail.value = detailResult.data;
 
   const imgResult = await queryVesselImage(Number(mmsi));
-  imgUrl.value = "http://192.168.1.128:9050" + imgResult.data;
+  imgUrl.value = imgResult.data;
 
   const traceResult = await queryTraceInfo(Number(mmsi));
   tarceInfo.value = traceResult.data;
@@ -424,7 +422,7 @@ onMounted(async () => {
 
 .berthing_info_report {
   position: relative;
-  top: 10px;
+  top: 0%;
   left: calc(50vw - 750px);
   width: 1500px;
   height: 2000px;
@@ -433,7 +431,7 @@ onMounted(async () => {
 
 .mooring_info_report {
   position: relative;
-  top: 20px;
+  top: 0%;
   left: calc(50vw - 750px);
   width: 1500px;
   height: 2000px;
@@ -442,7 +440,7 @@ onMounted(async () => {
 
 .sailing_info_report {
   position: relative;
-  top: 30px;
+  top: 0%;
   left: calc(50vw - 750px);
   width: 1500px;
   height: 2000px;

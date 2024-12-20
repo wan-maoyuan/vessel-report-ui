@@ -32,7 +32,7 @@ const map = ref();
 onMounted(() => {
 	map.value = L.map('mooring').setView([0, 0], 2);
 
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	L.tileLayer('https://t0.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=a3f1871ff0ee05cf0025344ccc9d1165', {
 		maxZoom: 4,
 		attribution: 'nav-green'
 	}).addTo(map.value);

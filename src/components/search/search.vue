@@ -77,7 +77,7 @@ watch(searchKey, async (newKey) => {
   position: absolute;
   top: 0%;
   left: 0%;
-  height: 94vh;
+  height: 100vh;
   width: 100vw;
   background-color: #EEEDED;
   background-image: radial-gradient(circle, #aaadb3 2px, transparent 2px);

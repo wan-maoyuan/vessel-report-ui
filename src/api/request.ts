@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const request = axios.create({ baseURL: 'http://192.168.1.128:9050' })
+const request = axios.create({ baseURL: 'http://47.121.185.9:10050' })
 
 request.interceptors.request.use(
   (config) => {
