@@ -16,6 +16,7 @@ request.interceptors.response.use(
     const res = response.data
     if (res.code !== 0) {
       console.log("request error: ", res.message);
+      return res;
     } else {
       return res;
     }
