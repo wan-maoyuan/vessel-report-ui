@@ -9,4 +9,19 @@ export default defineConfig({
     port: 8080,
     https: false,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('echarts')) {
+            return 'echarts';
+          }
+
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+  },
 })
