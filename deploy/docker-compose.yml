@@ -1,8 +1,8 @@
-version: "3.8"
+name: "vessel_report_ui"
+
 services:
- gateway:
+ vessel_report_ui:
   image: nav-green/vessel_report_ui:v0.0.1
   container_name: vessel-report-ui
   restart: always
-  ports:
-    - 8080:80
+  network_mode: host
