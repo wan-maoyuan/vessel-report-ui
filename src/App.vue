@@ -1,31 +1,49 @@
-<template>
-  <component :is="currentView" />
-</template>
-
 <script setup lang="ts">
-import Search from './components/search/search.vue';
-import VesselInfo from './components/vessel/vesselInfo.vue';
+import { computed } from 'vue'
+import { useAppStore } from '@/store/modules/app'
+import { ConfigGlobal } from '@/components/ConfigGlobal'
+import { useDesign } from '@/hooks/web/useDesign'
 
-import { ref, computed } from 'vue'
+const { getPrefixCls } = useDesign()
 
-const routes = {
-  '/': Search,
-  '/vessel_info': VesselInfo
-}
-const currentPath = ref(window.location.hash);
+const prefixCls = getPrefixCls('app')
 
-window.addEventListener('hashchange', () => {
-  currentPath.value = window.location.hash
-})
+const appStore = useAppStore()
 
-const currentView = computed(() => {
-  if (currentPath.value.includes('vessel_info')) {
-    return routes['/vessel_info'];
-  }
+const currentSize = computed(() => appStore.getCurrentSize)
 
-  return routes['/'];
-})
+const greyMode = computed(() => appStore.getGreyMode)
+
+appStore.initTheme()
 </script>
 
-<style scoped>
+<template>
+  <ConfigGlobal :size="currentSize">
+    <RouterView :class="greyMode ? `${prefixCls}-grey-mode` : ''" />
+  </ConfigGlobal>
+</template>
+
+<style lang="less">
+@prefix-cls: ~'@{namespace}-app';
+
+.size {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body {
+  padding: 0 !important;
+  margin: 0;
+  overflow: hidden;
+  .size;
+
+  #app {
+    .size;
+  }
+}
+
+.@{prefix-cls}-grey-mode {
+  filter: grayscale(100%);
+}
 </style>

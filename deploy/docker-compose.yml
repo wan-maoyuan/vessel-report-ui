@@ -1,8 +1,0 @@
-name: "vessel_report_ui"
-
-services:
- vessel_report_ui:
-  image: nav-green/vessel_report_ui:v0.0.1
-  container_name: vessel-report-ui
-  restart: always
-  network_mode: host
