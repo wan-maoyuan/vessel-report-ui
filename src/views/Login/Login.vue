@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { LoginForm, RegisterForm } from './components'
-import { ThemeSwitch } from '@/components/ThemeSwitch'
-import { getCssVar, underlineToHump } from '@/utils'
+import { underlineToHump } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ref } from 'vue'
@@ -20,12 +19,6 @@ const toRegister = () => {
 
 const toLogin = () => {
   isLogin.value = true
-}
-
-const themeChange = () => {
-  const color = getCssVar('--el-bg-color')
-  appStore.setMenuTheme(color)
-  appStore.setHeaderTheme(color)
 }
 </script>
 
